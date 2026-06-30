@@ -404,6 +404,11 @@
             font-size: 16px;
         }
 
+        .form-group label .required {
+            color: #dc2626;
+            font-weight: 900;
+        }
+
         .form-group input,
         .form-group textarea,
         .form-group select {
@@ -772,27 +777,27 @@
                 </div>
 
                 <div class="form-group">
-                    <label>Nome completo</label>
+                    <label>Nome completo <span class="required">*</span></label>
                     <input type="text" name="nome" required>
                 </div>
 
                 <div class="form-group">
-                    <label>WhatsApp (com código do país)</label>
+                    <label>WhatsApp (com código do país) <span class="required">*</span></label>
                     <input type="text" name="whatsapp" placeholder="+55 (11) 9XXXX-XXXX ou +1 (XXX) XXX-XXXX" required>
                 </div>
 
                 <div class="form-group">
-                    <label>E-mail</label>
+                    <label>E-mail <span class="required">*</span></label>
                     <input type="email" name="email" required>
                 </div>
 
                 <div class="form-group">
-                    <label>Qual estado você está nos EUA?</label>
+                    <label>Qual estado você está nos EUA? <span class="required">*</span></label>
                     <input type="text" name="estado" placeholder="Ex: California, New York, Texas..." required>
                 </div>
 
                 <div class="form-group">
-                    <label>Qual é seu status de visto atual?</label>
+                    <label>Qual é seu status de visto atual? <span class="required">*</span></label>
                     <div class="radio-group">
                         <div class="radio-option">
                             <input type="radio" name="vistoAtual" value="h1b" id="visto1">
@@ -826,7 +831,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label>Qual seu principal objetivo?</label>
+                    <label>Qual seu principal objetivo? <span class="required">*</span></label>
                     <div class="radio-group">
                         <div class="radio-option">
                             <input type="radio" name="objetivo" value="residentePermanente" id="obj1">
@@ -1754,6 +1759,45 @@
 
         document.getElementById('mainForm').addEventListener('submit', async function(e) {
             e.preventDefault();
+            
+            // Validar campos obrigatórios
+            const camposObrigatorios = ['nome', 'whatsapp', 'email', 'estado', 'vistoAtual', 'objetivo'];
+            let campoVazio = false;
+            
+            for (let campo of camposObrigatorios) {
+                const elemento = document.querySelector(`[name="${campo}"]`);
+                if (!elemento) continue;
+                
+                if (elemento.type === 'text' || elemento.type === 'email') {
+                    if (!elemento.value.trim()) {
+                        campoVazio = true;
+                        elemento.style.borderColor = '#dc2626';
+                        elemento.style.boxShadow = '0 0 0 5px rgba(220, 38, 38, 0.3)';
+                    }
+                } else if (elemento.type === 'radio') {
+                    const radiosSelecionados = document.querySelectorAll(`input[name="${campo}"]:checked`);
+                    if (radiosSelecionados.length === 0) {
+                        campoVazio = true;
+                    }
+                }
+            }
+            
+            if (campoVazio) {
+                alert('⚠️ Por favor, preencha todos os campos obrigatórios (marcados com *)');
+                return;
+            }
+            
+            // Validar autorização
+            const autorizacao = document.querySelector('input[name="autorizacaoContato"]:checked');
+            if (!autorizacao) {
+                alert('⚠️ Você precisa autorizar o contato para continuar');
+                return;
+            }
+            
+            // Confirmação antes de enviar
+            const confirmacao = confirm('✓ Tem certeza que deseja enviar sua pré-análise?\n\nVocê receberá um email com sua classificação e nossa equipe entrará em contato em breve.');
+            if (!confirmacao) return;
+            
             saveCurrentSectionData();
             
             const q = calculateQualification();
