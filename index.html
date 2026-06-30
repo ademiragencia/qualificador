@@ -999,8 +999,7 @@
         </div>
 
         <!-- FORM -->
-        <form id="mainForm" class="form-container hidden" action="https://api.web3forms.com/submit" method="POST">
-            <input type="hidden" name="access_key" value="fc648af1-d868-4202-bebd-a21326ef4484">
+        <form id="mainForm" class="form-container hidden" action="https://formspree.io/f/xbdvavwa" method="POST">
 
             <div class="progress-container">
                 <div class="progress-info">
@@ -2071,18 +2070,32 @@
 
             formData['classificacao'] = q.category;
 
-            try {
+            // Adicionar classificação ao formulário
+            const classifField = document.createElement('input');
+            classifField.type = 'hidden';
+            classifField.name = 'classificacao';
+            classifField.value = q.category;
+            document.getElementById('mainForm').appendChild(classifField);
+
+            // Enviar com Formspree
+            setTimeout(() => {
                 const formElement = document.getElementById('mainForm');
                 const formDataToSend = new FormData(formElement);
-                formDataToSend.append('classificacao', q.category);
                 
-                await fetch('https://api.web3forms.com/submit', {
+                fetch('https://formspree.io/f/xbdvavwa', {
                     method: 'POST',
-                    body: formDataToSend
+                    body: formDataToSend,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                }).then(response => {
+                    if (response.ok) {
+                        console.log('Email enviado com sucesso!');
+                    }
+                }).catch(error => {
+                    console.log('Erro ao enviar:', error);
                 });
-            } catch (error) {
-                console.log('Dados capturados');
-            }
+            }, 500);
         });
     </script>
 </body>
