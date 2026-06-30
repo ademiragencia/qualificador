@@ -119,6 +119,8 @@
             padding: 60px 30px;
             position: relative;
             z-index: 10;
+            width: 100%;
+            overflow-x: hidden;
         }
 
         /* WELCOME SCREEN */
@@ -667,27 +669,268 @@
 
         @media (max-width: 768px) {
             .welcome-screen {
-                padding: 40px 25px;
+                padding: 30px 20px;
+                margin: 0 10px;
             }
 
             .welcome-screen h1 {
-                font-size: 42px;
+                font-size: 36px;
+                line-height: 1.2;
             }
 
-            .form-container {
-                padding: 30px 20px;
+            .emoji-flag {
+                font-size: 60px !important;
+                margin-bottom: 15px;
             }
 
-            .button-group {
-                flex-direction: column;
-            }
-
-            .btn-nav {
-                width: 100%;
+            .welcome-screen .subtitle {
+                font-size: 16px;
+                margin-bottom: 30px;
             }
 
             .stats-container {
                 grid-template-columns: repeat(2, 1fr);
+                gap: 12px;
+                margin: 30px 0;
+            }
+
+            .stat-card {
+                padding: 20px 15px;
+            }
+
+            .stat-number {
+                font-size: 28px;
+            }
+
+            .stat-label {
+                font-size: 12px;
+            }
+
+            .btn-start {
+                padding: 16px 40px;
+                font-size: 16px;
+                letter-spacing: 0.5px;
+                width: 100%;
+            }
+
+            .timer-info {
+                font-size: 13px;
+                margin-top: 20px;
+            }
+
+            /* FORM MOBILE */
+            .form-container {
+                padding: 25px 15px;
+                margin-top: 20px;
+                margin-left: 10px;
+                margin-right: 10px;
+                border-radius: 20px;
+            }
+
+            .section-header {
+                margin-bottom: 30px;
+                padding-bottom: 20px;
+            }
+
+            .section-header h2 {
+                font-size: 28px;
+            }
+
+            .section-header p {
+                font-size: 14px;
+            }
+
+            .form-group {
+                margin-bottom: 20px;
+            }
+
+            .form-group label {
+                font-size: 14px;
+                margin-bottom: 10px;
+            }
+
+            .form-group input,
+            .form-group textarea,
+            .form-group select {
+                padding: 14px 16px;
+                font-size: 16px;
+                border-radius: 12px;
+            }
+
+            .form-group textarea {
+                min-height: 100px;
+            }
+
+            .radio-option,
+            .checkbox-option {
+                padding: 12px 14px;
+                font-size: 14px;
+                margin-bottom: 8px;
+            }
+
+            .radio-option input,
+            .checkbox-option input {
+                width: 18px;
+                height: 18px;
+                margin-right: 10px;
+            }
+
+            .radio-option label,
+            .checkbox-option label {
+                font-size: 14px;
+            }
+
+            .progress-container {
+                margin-bottom: 30px;
+            }
+
+            .progress-info {
+                font-size: 13px;
+                margin-bottom: 10px;
+            }
+
+            .progress-bar {
+                height: 8px;
+            }
+
+            /* BUTTONS MOBILE */
+            .button-group {
+                gap: 10px;
+                margin-top: 40px;
+            }
+
+            .btn-nav {
+                padding: 14px 20px;
+                font-size: 14px;
+                width: 100%;
+            }
+
+            #prevBtn {
+                flex: 0.8;
+            }
+
+            #nextBtn,
+            #submitBtn {
+                flex: 1;
+            }
+
+            .alert {
+                padding: 14px;
+                font-size: 13px;
+                border-radius: 12px;
+            }
+
+            /* RESULT MOBILE */
+            .result-screen {
+                padding: 25px 15px;
+                margin: 0 10px;
+                border-radius: 20px;
+            }
+
+            .success-check {
+                font-size: 70px;
+                margin-bottom: 20px;
+            }
+
+            .result-screen h2 {
+                font-size: 28px;
+                margin-bottom: 10px;
+            }
+
+            .result-badge {
+                padding: 18px 30px;
+                font-size: 16px;
+                margin: 25px 0;
+            }
+
+            .result-details {
+                padding: 20px;
+                margin: 20px 0;
+                border-radius: 15px;
+            }
+
+            .result-details h3 {
+                font-size: 16px;
+                margin-bottom: 15px;
+            }
+
+            .result-details li {
+                padding: 10px 0;
+                font-size: 14px;
+            }
+
+            .container {
+                padding: 30px 0;
+                max-width: 100%;
+            }
+
+            body {
+                overflow-x: hidden;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .welcome-screen {
+                padding: 25px 15px;
+                margin: 0 5px;
+            }
+
+            .welcome-screen h1 {
+                font-size: 28px;
+            }
+
+            .emoji-flag {
+                font-size: 50px !important;
+            }
+
+            .welcome-screen .subtitle {
+                font-size: 14px;
+            }
+
+            .stats-container {
+                grid-template-columns: 1fr;
+            }
+
+            .stat-card {
+                padding: 15px 12px;
+            }
+
+            .stat-number {
+                font-size: 24px;
+            }
+
+            .form-container {
+                padding: 20px 12px;
+                margin-left: 5px;
+                margin-right: 5px;
+            }
+
+            .section-header h2 {
+                font-size: 24px;
+            }
+
+            .button-group {
+                flex-direction: column;
+                gap: 8px;
+            }
+
+            .btn-nav {
+                width: 100%;
+                padding: 13px 15px;
+            }
+
+            #prevBtn {
+                flex: none;
+            }
+
+            .result-screen {
+                padding: 20px 12px;
+                margin: 0 5px;
+            }
+
+            .result-badge {
+                padding: 15px 25px;
+                font-size: 14px;
             }
         }
 
